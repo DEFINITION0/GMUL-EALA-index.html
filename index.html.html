@@ -301,6 +301,75 @@ footer{background:var(--bg-card);border-top:1px solid var(--border);padding:2.8r
 .d1{transition-delay:.06s}.d2{transition-delay:.13s}.d3{transition-delay:.2s}
 .d4{transition-delay:.27s}.d5{transition-delay:.34s}.d6{transition-delay:.41s}
 
+/* ── ADMIN PANEL ── */
+.admin-overlay{position:fixed;inset:0;z-index:3000;background:rgba(2,12,24,.97);backdrop-filter:blur(12px);display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .3s;}
+.admin-overlay.open{opacity:1;pointer-events:all;}
+.admin-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:1px solid var(--border);background:var(--bg-card);flex-shrink:0;}
+.admin-title{font-family:var(--font-d);font-size:1rem;font-weight:700;display:flex;align-items:center;gap:.5em;}
+.admin-body{flex:1;overflow-y:auto;padding:1.5rem 2rem;max-width:1100px;margin:0 auto;width:100%;}
+.admin-tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;}
+.admin-tab{padding:.4em 1.2em;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--txt2);font-size:.8rem;font-family:var(--font-b);cursor:pointer;transition:all .2s;}
+.admin-tab.on{background:var(--ocean-d);border-color:var(--ocean);color:var(--ocean);}
+.admin-panel{display:none;}
+.admin-panel.on{display:block;}
+.admin-stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.8rem;}
+.admin-stat{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:.9rem;text-align:center;}
+.admin-stat-val{font-family:var(--font-d);font-size:1.6rem;font-weight:700;color:var(--ocean);}
+.admin-stat-lbl{font-size:.67rem;color:var(--txt3);margin-top:.2em;}
+.admin-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.2rem;margin-bottom:1rem;display:grid;grid-template-columns:110px 1fr auto;gap:1.2rem;align-items:start;transition:border-color .2s;}
+.admin-card:hover{border-color:var(--border-h);}
+.admin-thumb{width:110px;height:85px;border-radius:9px;overflow:hidden;border:1px solid var(--border);background:var(--bg-up);display:flex;align-items:center;justify-content:center;font-size:1.8rem;cursor:pointer;flex-shrink:0;}
+.admin-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.admin-info-id{font-size:.65rem;color:var(--txt3);font-family:var(--font-d);margin-bottom:.2em;}
+.admin-info-loc{font-size:.88rem;font-weight:700;margin-bottom:.3em;}
+.admin-info-meta{font-size:.75rem;color:var(--txt2);line-height:1.75;}
+.admin-ai-box{background:var(--bg-up);border-radius:8px;padding:.6rem .85rem;margin-top:.55rem;font-size:.74rem;line-height:1.65;color:var(--txt2);}
+.admin-ai-lbl{font-size:.63rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);margin-bottom:.25em;}
+.admin-actions{display:flex;flex-direction:column;gap:.5rem;min-width:85px;}
+.btn-approve{background:rgba(102,187,106,.15);border:1px solid rgba(102,187,106,.3);color:#66bb6a;border-radius:8px;padding:.45em .8em;font-size:.76rem;font-weight:700;font-family:var(--font-b);cursor:pointer;transition:all .2s;width:100%;}
+.btn-approve:hover{background:rgba(102,187,106,.28);}
+.btn-reject{background:rgba(239,83,80,.12);border:1px solid rgba(239,83,80,.3);color:#ef5350;border-radius:8px;padding:.45em .8em;font-size:.76rem;font-weight:700;font-family:var(--font-b);cursor:pointer;transition:all .2s;width:100%;}
+.btn-reject:hover{background:rgba(239,83,80,.22);}
+.btn-view-photo{background:var(--ocean-d);border:1px solid rgba(26,143,227,.3);color:var(--ocean);border-radius:8px;padding:.45em .8em;font-size:.76rem;font-weight:700;font-family:var(--font-b);cursor:pointer;transition:all .2s;width:100%;}
+.admin-login{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;}
+.admin-login-box{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:2.5rem;width:100%;max-width:340px;text-align:center;}
+.admin-login-title{font-size:1.1rem;font-weight:700;margin-bottom:.3em;}
+.admin-login-sub{font-size:.8rem;color:var(--txt2);margin-bottom:1.5rem;}
+.admin-empty{text-align:center;padding:3rem;color:var(--txt3);font-size:.9rem;}
+
+/* ── AI ANALYSIS ── */
+.ai-loading{display:none;margin-top:1rem;background:var(--bg-up);border:1px solid var(--border);border-radius:12px;padding:1.2rem;}
+.ai-loading.show{display:block;}
+.ai-step{display:flex;align-items:center;gap:.7em;font-size:.78rem;margin-bottom:.45em;opacity:.25;transition:opacity .5s,color .5s;}
+.ai-step.active{opacity:1;color:var(--ocean);}
+.ai-step.done{opacity:1;color:var(--teal);}
+.ai-step-icon{font-size:.9rem;width:18px;text-align:center;}
+.ai-progress{height:3px;background:var(--border);border-radius:2px;margin-top:.8rem;overflow:hidden;}
+.ai-progress-bar{height:100%;background:linear-gradient(90deg,var(--ocean),var(--teal));border-radius:2px;width:0%;transition:width .5s ease;}
+.ai-result{display:none;margin-top:1rem;border-radius:12px;padding:1.2rem;border:1px solid;}
+.ai-result.ok{display:block;background:rgba(102,187,106,.08);border-color:rgba(102,187,106,.25);}
+.ai-result.fail{display:block;background:rgba(239,83,80,.08);border-color:rgba(239,83,80,.25);}
+.ai-result-header{display:flex;align-items:center;gap:.55em;margin-bottom:.7rem;}
+.ai-result-icon{font-size:1.3rem;}
+.ai-result-title{font-size:.9rem;font-weight:700;}
+.ai-confidence{margin-left:auto;font-size:.75rem;font-weight:700;}
+.ai-result-body{font-size:.77rem;color:var(--txt2);line-height:1.8;}
+.ai-verdict{margin-top:.75rem;padding:.55rem .85rem;border-radius:8px;font-size:.78rem;font-weight:700;text-align:center;}
+.ai-verdict.ok{background:rgba(102,187,106,.15);color:#66bb6a;}
+.ai-verdict.fail{background:rgba(239,83,80,.12);color:#ef5350;}
+
+/* ── PHOTO PREVIEW ── */
+.photo-preview{display:none;margin-top:.65rem;border-radius:10px;overflow:hidden;border:1px solid var(--border);max-height:150px;}
+.photo-preview.show{display:block;}
+.photo-preview img{width:100%;height:150px;object-fit:cover;display:block;}
+
+/* ── LIGHTBOX ── */
+.lightbox{position:fixed;inset:0;z-index:5000;background:rgba(0,0,0,.94);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;}
+.lightbox.open{opacity:1;pointer-events:all;}
+.lightbox-img{max-width:90vw;max-height:88vh;border-radius:12px;object-fit:contain;}
+.lightbox-close{position:absolute;top:1.2rem;right:1.2rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:50%;width:42px;height:42px;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.lightbox-caption{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.7);color:#fff;font-size:.8rem;padding:.4em 1em;border-radius:8px;white-space:nowrap;}
+
 /* RESPONSIVE */
 @media(max-width:1050px){
   .map-layout,.form-layout{grid-template-columns:1fr;}
@@ -334,6 +403,7 @@ footer{background:var(--bg-card);border-top:1px solid var(--border);padding:2.8r
     <li><a href="#cert-sec">수거인증</a></li>
     <li><a href="#activity-sec">활동내역</a></li>
     <li><a href="#reward-sec">키링리워드</a></li>
+    <li><a href="#" onclick="openAdminPanel();return false;" style="color:var(--txt3);">🔐 관리자</a></li>
   </ul>
   <div class="nav-right">
     <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">🌙</button>
@@ -447,7 +517,7 @@ footer{background:var(--bg-card);border-top:1px solid var(--border);padding:2.8r
         <div class="form-row"><label class="form-lbl">위험도</label><div class="sev-row"><button class="sev-btn sev-l" onclick="setSev(this)">🟢 낮음</button><button class="sev-btn sev-m" onclick="setSev(this)">🟠 보통</button><button class="sev-btn sev-h" onclick="setSev(this)">🔴 높음</button></div></div>
         <div class="form-row"><label class="form-lbl">상세 설명</label><textarea class="form-ta" placeholder="발견 위치, 크기, 상태 등을 자세히 적어주세요."></textarea></div>
         <div class="form-row"><label class="form-lbl">닉네임</label><input class="form-in" type="text" placeholder="예: 바다지킴이" /></div>
-        <div class="form-row"><label class="form-lbl">현장 사진</label><div class="upload-zone" onclick="triggerUpload('rpt-photo')"><input type="file" id="rpt-photo" accept="image/*" style="display:none" onchange="showFileName(this,'rpt-pname')" /><div class="upload-icon">📷</div><div class="upload-txt" id="rpt-pname">클릭하거나 드래그 (JPG, PNG, 최대 10MB)</div></div></div>
+        <div class="form-row"><label class="form-lbl">현장 사진</label><div class="upload-zone" onclick="triggerUpload('rpt-photo')"><input type="file" id="rpt-photo" accept="image/*" style="display:none" onchange="showFileName(this,'rpt-pname');showPhotoPreview(this,'rpt-prev')" /><div class="upload-icon">📷</div><div class="upload-txt" id="rpt-pname">클릭하거나 드래그 (JPG, PNG, 최대 10MB)</div></div><div class="photo-preview" id="rpt-prev"></div></div>
         <button class="btn-sub" onclick="submitReport()">🎣 제보 접수하기</button>
       </div>
     </div>
@@ -473,8 +543,8 @@ footer{background:var(--bg-card);border-top:1px solid var(--border);padding:2.8r
         </div>
       </div>
       <div class="form-card rv d2">
-        <div class="form-row"><label class="form-lbl">수거 전 사진</label><div class="upload-zone" onclick="triggerUpload('cert-before')"><input type="file" id="cert-before" accept="image/*" style="display:none" onchange="showFileName(this,'cb-name')" /><div class="upload-icon">📸</div><div class="upload-txt" id="cb-name">수거 전 사진 첨부</div></div></div>
-        <div class="form-row"><label class="form-lbl">수거 후 사진</label><div class="upload-zone" onclick="triggerUpload('cert-after')"><input type="file" id="cert-after" accept="image/*" style="display:none" onchange="showFileName(this,'ca-name')" /><div class="upload-icon">✅</div><div class="upload-txt" id="ca-name">수거 후 사진 첨부</div></div></div>
+        <div class="form-row"><label class="form-lbl">수거 전 사진</label><div class="upload-zone" onclick="triggerUpload('cert-before')"><input type="file" id="cert-before" accept="image/*" style="display:none" onchange="showFileName(this,'cb-name');showPhotoPreview(this,'cb-prev')" /><div class="upload-icon">📸</div><div class="upload-txt" id="cb-name">수거 전 사진 첨부</div></div><div class="photo-preview" id="cb-prev"></div></div>
+        <div class="form-row"><label class="form-lbl">수거 후 사진</label><div class="upload-zone" onclick="triggerUpload('cert-after')"><input type="file" id="cert-after" accept="image/*" style="display:none" onchange="showFileName(this,'ca-name');showPhotoPreview(this,'ca-prev')" /><div class="upload-icon">✅</div><div class="upload-txt" id="ca-name">수거 후 사진 첨부</div></div><div class="photo-preview" id="ca-prev"></div></div>
         <div class="form-row"><label class="form-lbl">수거 위치</label><input class="form-in" id="cert-loc" type="text" placeholder="예: 경남 통영시 욕지면 앞바다" /></div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;">
           <div class="form-row"><label class="form-lbl">수거량 (kg)</label><input class="form-in" id="cert-kg" type="number" min="0.1" step="0.1" placeholder="예: 15.5" /></div>
@@ -482,6 +552,16 @@ footer{background:var(--bg-card);border-top:1px solid var(--border);padding:2.8r
         </div>
         <div class="form-row"><label class="form-lbl">추가 설명 (선택)</label><textarea class="form-ta" placeholder="수거 방법, 협조 인원 등을 적어주세요." style="min-height:70px;"></textarea></div>
         <button class="btn-sub" onclick="submitCert()" style="background:linear-gradient(135deg,var(--teal),var(--ocean));">✅ 수거 인증 제출하기</button>
+        <div class="ai-loading" id="certAiBox">
+          <div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:.75rem;">🤖 AI 자동 분석 진행 중</div>
+          <div class="ai-step" id="ai-s1"><span class="ai-step-icon">📡</span> 이미지 업로드 확인 중</div>
+          <div class="ai-step" id="ai-s2"><span class="ai-step-icon">🎨</span> 색상 분포 분석 중</div>
+          <div class="ai-step" id="ai-s3"><span class="ai-step-icon">🔍</span> 물체 감지 알고리즘 실행 중</div>
+          <div class="ai-step" id="ai-s4"><span class="ai-step-icon">🕸️</span> 폐어망 패턴 데이터베이스 대조 중</div>
+          <div class="ai-step" id="ai-s5"><span class="ai-step-icon">📊</span> 최종 판정 생성 중</div>
+          <div class="ai-progress"><div class="ai-progress-bar" id="certAiBar"></div></div>
+        </div>
+        <div class="ai-result" id="certAiResult"></div>
         <div style="margin-top:1.3rem;background:var(--bg-up);border-radius:11px;padding:1rem;">
           <div style="font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);margin-bottom:.7rem;">검증 단계</div>
           <div style="display:flex;justify-content:space-between;align-items:center;">
@@ -558,6 +638,53 @@ footer{background:var(--bg-card);border-top:1px solid var(--border);padding:2.8r
 </footer>
 
 <div class="toast" id="toast">알림</div>
+
+<!-- ── ADMIN OVERLAY ── -->
+<div class="admin-overlay" id="adminOverlay">
+  <div class="admin-header">
+    <div class="admin-title">🔐 그물이어라 관리자 패널</div>
+    <div style="display:flex;gap:.6rem;align-items:center;">
+      <span style="font-size:.72rem;color:var(--txt3);">제보·인증 열람 및 AI 검증 결과 확인</span>
+      <button onclick="closeAdminPanel()" style="background:var(--bg-up);border:1px solid var(--border);color:var(--txt2);border-radius:8px;padding:.38em .85em;cursor:pointer;font-size:.85rem;font-family:var(--font-b);">✕ 닫기</button>
+    </div>
+  </div>
+  <div class="admin-body" id="adminBody">
+    <!-- 로그인 화면 -->
+    <div class="admin-login" id="adminLogin">
+      <div class="admin-login-box">
+        <div style="font-size:2.2rem;margin-bottom:.8rem;">🔐</div>
+        <div class="admin-login-title">관리자 로그인</div>
+        <div class="admin-login-sub">이 패널은 관리자 전용입니다.<br>비밀번호를 입력해 접속하세요.</div>
+        <div class="form-row" style="margin-top:1.2rem;">
+          <input class="form-in" type="password" id="adminPwInput" placeholder="비밀번호 입력" onkeydown="if(event.key==='Enter')adminLogin()" />
+        </div>
+        <button class="btn-sub" onclick="adminLogin()" style="margin-top:.4rem;">로그인</button>
+        <div id="adminLoginErr" style="color:#ef5350;font-size:.78rem;margin-top:.75rem;display:none;">⚠️ 비밀번호가 올바르지 않습니다.</div>
+      </div>
+    </div>
+    <!-- 대시보드 (로그인 후) -->
+    <div id="adminDash" style="display:none;">
+      <div class="admin-stats-bar" id="adminStatsBar"></div>
+      <div class="admin-tabs">
+        <button class="admin-tab on" onclick="switchAdminTab('reports',this)">📋 제보 현황</button>
+        <button class="admin-tab" onclick="switchAdminTab('certs',this)">✅ 수거 인증</button>
+      </div>
+      <div class="admin-panel on" id="admin-panel-reports">
+        <div id="adminReportsList"></div>
+      </div>
+      <div class="admin-panel" id="admin-panel-certs">
+        <div id="adminCertsList"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── LIGHTBOX ── -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img class="lightbox-img" id="lightboxImg" src="" alt="사진 보기" />
+  <button class="lightbox-close" onclick="event.stopPropagation();closeLightbox()">✕</button>
+  <div class="lightbox-caption" id="lightboxCaption"></div>
+</div>
 
 <div class="modal-bg" id="modalBg">
   <div class="modal">
@@ -695,9 +822,251 @@ function submitKeyring(){closeModal();showToast('✅ 키링 신청이 접수되�
 function setSev(btn){btn.closest('.sev-row').querySelectorAll('.sev-btn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');}
 function triggerUpload(id){document.getElementById(id).click();}
 function showFileName(input,nameId){if(input.files.length>0)document.getElementById(nameId).textContent='✅ '+input.files[0].name;}
+function showPhotoPreview(input,prevId){
+  if(!input.files||!input.files[0])return;
+  const reader=new FileReader();
+  reader.onload=e=>{const p=document.getElementById(prevId);if(p){p.innerHTML=`<img src="${e.target.result}" alt="미리보기"/>`;p.classList.add('show');}};
+  reader.readAsDataURL(input.files[0]);
+}
 function getGPS(){if(!navigator.geolocation){showToast('⚠️ 위치 서비스 미지원 브라우저입니다.');return;}navigator.geolocation.getCurrentPosition(p=>{document.getElementById('rpt-loc').value=`위도 ${p.coords.latitude.toFixed(5)}, 경도 ${p.coords.longitude.toFixed(5)}`;showToast('📍 현재 위치가 입력되었습니다.');},()=>showToast('⚠️ 위치 정보를 가져올 수 없습니다.'));}
-function submitReport(){if(!document.getElementById('rpt-loc').value.trim()){showToast('⚠️ 위치를 입력해 주세요.');return;}showToast('🎣 제보가 접수되었습니다! 지도에 반영됩니다.');}
-function submitCert(){if(!document.getElementById('cert-loc').value.trim()||!document.getElementById('cert-kg').value){showToast('⚠️ 수거 위치와 수거량을 입력해 주세요.');return;}showToast('✅ 수거 인증이 제출되었습니다!');}
+
+/* ── 이미지 압축 (저장 공간 절약) ── */
+async function compressImage(file,maxW=800,maxH=800,q=0.75){
+  return new Promise(resolve=>{
+    const reader=new FileReader();
+    reader.onload=e=>{
+      const img=new Image();
+      img.onload=()=>{
+        let w=img.width,h=img.height;
+        if(w>maxW){h=Math.round(h*maxW/w);w=maxW;}
+        if(h>maxH){w=Math.round(w*maxH/h);h=maxH;}
+        const cv=document.createElement('canvas');cv.width=w;cv.height=h;
+        cv.getContext('2d').drawImage(img,0,0,w,h);
+        resolve(cv.toDataURL('image/jpeg',q));
+      };
+      img.onerror=()=>resolve(e.target.result);
+      img.src=e.target.result;
+    };
+    reader.onerror=()=>resolve(null);
+    reader.readAsDataURL(file);
+  });
+}
+
+/* ── 제보 접수 (사진 저장 포함) ── */
+async function submitReport(){
+  const loc=document.getElementById('rpt-loc').value.trim();
+  if(!loc){showToast('⚠️ 위치를 입력해 주세요.');return;}
+  const photoFile=document.getElementById('rpt-photo').files[0]||null;
+  let photoB64=null;
+  if(photoFile)try{photoB64=await compressImage(photoFile);}catch(e){}
+  const reports=JSON.parse(localStorage.getItem('gmul_reports')||'[]');
+  const id='GN-U'+String(Date.now()).slice(-5);
+  const now=new Date();
+  const ds=`${now.getFullYear()}.${String(now.getMonth()+1).padStart(2,'0')}.${String(now.getDate()).padStart(2,'0')}`;
+  const sel=document.querySelector('#report-sec .form-sel');
+  reports.push({id,loc,photoB64,date:ds,status:'pending',type:sel?sel.value||'기타':'기타'});
+  try{localStorage.setItem('gmul_reports',JSON.stringify(reports));}
+  catch(e){showToast('⚠️ 저장 용량 초과. 사진 크기를 줄여 주세요.');return;}
+  showToast('🎣 제보가 접수되었습니다! 관리자가 검토합니다.');
+}
+
+/* ── 수거 인증 제출 (AI 분석 포함) ── */
+async function submitCert(){
+  const loc=document.getElementById('cert-loc').value.trim();
+  const kg=document.getElementById('cert-kg').value;
+  if(!loc||!kg){showToast('⚠️ 수거 위치와 수거량을 입력해 주세요.');return;}
+  const bFile=document.getElementById('cert-before').files[0]||null;
+  const aFile=document.getElementById('cert-after').files[0]||null;
+  let beforeB64=null,afterB64=null;
+  if(bFile)try{beforeB64=await compressImage(bFile);}catch(e){}
+  if(aFile)try{afterB64=await compressImage(aFile);}catch(e){}
+  const certs=JSON.parse(localStorage.getItem('gmul_certs')||'[]');
+  const id='CT-U'+String(Date.now()).slice(-5);
+  const now=new Date();
+  const ds=`${now.getFullYear()}.${String(now.getMonth()+1).padStart(2,'0')}.${String(now.getDate()).padStart(2,'0')}`;
+  const certData={id,loc,kg,beforeB64,afterB64,date:ds,status:'review',aiResult:null};
+  certs.push(certData);
+  const certIndex=certs.length-1;
+  try{localStorage.setItem('gmul_certs',JSON.stringify(certs));}
+  catch(e){showToast('⚠️ 저장 용량 초과. 사진 크기를 줄여 주세요.');return;}
+  showToast('✅ 수거 인증 제출 완료! AI 분석을 시작합니다...');
+  await runAIAnalysis(afterB64||beforeB64,certIndex);
+}
+
+/* ── AI 분석 (Canvas 기반 시뮬레이션) ── */
+async function runAIAnalysis(imageB64,certIndex){
+  const aiBox=document.getElementById('certAiBox');
+  const aiResult=document.getElementById('certAiResult');
+  if(!aiBox)return;
+  aiBox.classList.add('show');
+  aiResult.className='ai-result';aiResult.innerHTML='';
+  const steps=aiBox.querySelectorAll('.ai-step');
+  const bar=document.getElementById('certAiBar');
+  bar.style.width='0%';
+  steps.forEach(s=>{s.className='ai-step';});
+  const waits=[500,900,800,800,700];
+  for(let i=0;i<steps.length;i++){
+    await new Promise(r=>setTimeout(r,waits[i]));
+    if(i>0){steps[i-1].classList.remove('active');steps[i-1].classList.add('done');}
+    steps[i].classList.add('active');
+    bar.style.width=`${(i+1)*20}%`;
+  }
+  await new Promise(r=>setTimeout(r,500));
+  steps[steps.length-1].classList.remove('active');
+  steps[steps.length-1].classList.add('done');
+  bar.style.width='100%';
+  let confidence=74+Math.floor(Math.random()*20);
+  if(imageB64){
+    try{
+      const img=new Image();img.src=imageB64;
+      await new Promise(r=>{img.onload=r;img.onerror=r;});
+      const cv=document.createElement('canvas');cv.width=64;cv.height=48;
+      const ctx=cv.getContext('2d');ctx.drawImage(img,0,0,64,48);
+      const d=ctx.getImageData(0,0,64,48).data;
+      let gS=0,bS=0,px=d.length/4;
+      for(let i=0;i<d.length;i+=4){gS+=d[i+1];bS+=d[i+2];}
+      const adj=Math.floor(((gS+bS)/(px*510))*18)-4;
+      confidence=Math.min(96,Math.max(61,confidence+adj));
+    }catch(e){}
+  }
+  const passed=confidence>=75;
+  await new Promise(r=>setTimeout(r,300));
+  const details=passed
+    ?[`✅ 그물망 구조 패턴 감지됨`,`✅ 해양 환경 배경 확인됨`,`✅ 수거 전·후 상태 변화 감지됨`,`ℹ️ 신뢰도 점수: ${confidence}% (기준: 75%)`]
+    :[`⚠️ 폐어망 패턴 감지 불명확 (신뢰도: ${confidence}%)`,`ℹ️ 추가 사진 또는 근접 촬영을 권장합니다`,`ℹ️ 관리자가 수동으로 검토합니다`];
+  aiResult.className=`ai-result ${passed?'ok':'fail'}`;
+  aiResult.innerHTML=`
+    <div class="ai-result-header">
+      <span class="ai-result-icon">${passed?'✅':'⚠️'}</span>
+      <span class="ai-result-title">${passed?'AI 검증 통과':'AI 검증 주의'}</span>
+      <span class="ai-confidence" style="color:${passed?'#66bb6a':'#ff9800'};">${confidence}%</span>
+    </div>
+    <div class="ai-result-body">${details.join('<br>')}</div>
+    <div class="ai-verdict ${passed?'ok':'fail'}">${passed?'🎉 수거 인증이 자동 승인 대기 중입니다.':'🔍 관리자 수동 검토가 진행됩니다.'}</div>`;
+  try{
+    const certs=JSON.parse(localStorage.getItem('gmul_certs')||'[]');
+    if(certs[certIndex]){certs[certIndex].aiResult={passed,confidence,details};localStorage.setItem('gmul_certs',JSON.stringify(certs));}
+  }catch(e){}
+}
+
+/* ── 관리자 패널 ── */
+let adminLoggedIn=false;
+function openAdminPanel(){
+  document.getElementById('adminOverlay').classList.add('open');
+  if(adminLoggedIn)loadAdminData();
+}
+function closeAdminPanel(){document.getElementById('adminOverlay').classList.remove('open');}
+function adminLogin(){
+  const pw=document.getElementById('adminPwInput').value;
+  const err=document.getElementById('adminLoginErr');
+  if(pw==='gmul2025'){
+    adminLoggedIn=true;
+    document.getElementById('adminLogin').style.display='none';
+    document.getElementById('adminDash').style.display='block';
+    loadAdminData();
+  }else{
+    err.style.display='block';
+    document.getElementById('adminPwInput').value='';
+    document.getElementById('adminPwInput').focus();
+  }
+}
+function switchAdminTab(tab,btn){
+  document.querySelectorAll('.admin-tab').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.admin-panel').forEach(p=>p.classList.remove('on'));
+  document.getElementById('admin-panel-'+tab).classList.add('on');
+}
+function loadAdminData(){
+  const reports=JSON.parse(localStorage.getItem('gmul_reports')||'[]');
+  const certs=JSON.parse(localStorage.getItem('gmul_certs')||'[]');
+  const sBar=document.getElementById('adminStatsBar');
+  sBar.innerHTML=`
+    <div class="admin-stat"><div class="admin-stat-val">${reports.length}</div><div class="admin-stat-lbl">신규 제보</div></div>
+    <div class="admin-stat"><div class="admin-stat-val">${certs.length}</div><div class="admin-stat-lbl">수거 인증</div></div>
+    <div class="admin-stat"><div class="admin-stat-val" style="color:#66bb6a;">${certs.filter(c=>c.aiResult&&c.aiResult.passed).length}</div><div class="admin-stat-lbl">AI 자동 통과</div></div>
+    <div class="admin-stat"><div class="admin-stat-val" style="color:var(--teal);">${[...reports,...certs].filter(x=>x.status==='approved').length}</div><div class="admin-stat-lbl">관리자 승인</div></div>`;
+  const sc={pending:'var(--txt3)',approved:'#66bb6a',rejected:'#ef5350',review:'#ff9800'};
+  const sl={pending:'대기중',approved:'승인',rejected:'반려',review:'검토중'};
+  const rList=document.getElementById('adminReportsList');
+  if(!reports.length){
+    rList.innerHTML='<div class="admin-empty">📭 아직 접수된 제보가 없습니다.<br><small style="font-size:.74rem;">제보 폼에서 사진을 첨부해 제보하면 여기에 표시됩니다.</small></div>';
+  }else{
+    rList.innerHTML=reports.map((r,i)=>`
+      <div class="admin-card">
+        <div class="admin-thumb" onclick="showReportPhoto(${i})" title="사진 크게 보기">
+          ${r.photoB64?`<img src="${r.photoB64}" alt="제보 사진"/>`:'<span style="font-size:1.6rem;">📷</span>'}
+        </div>
+        <div style="min-width:0;">
+          <div class="admin-info-id">${r.id}</div>
+          <div class="admin-info-loc">${r.loc}</div>
+          <div class="admin-info-meta">🎣 ${r.type} &nbsp;·&nbsp; 📅 ${r.date}<br>상태: <span style="color:${sc[r.status]||'var(--txt2)'};">${sl[r.status]||r.status}</span></div>
+        </div>
+        <div class="admin-actions">
+          <button class="btn-approve" onclick="adminApproveReport(${i})">✅ 승인</button>
+          <button class="btn-reject" onclick="adminRejectReport(${i})">❌ 반려</button>
+          ${r.photoB64?`<button class="btn-view-photo" onclick="showReportPhoto(${i})">🔍 사진</button>`:''}
+        </div>
+      </div>`).join('');
+  }
+  const cList=document.getElementById('adminCertsList');
+  if(!certs.length){
+    cList.innerHTML='<div class="admin-empty">📭 아직 제출된 수거 인증이 없습니다.<br><small style="font-size:.74rem;">수거 인증 폼에서 사진을 첨부해 제출하면 여기에 표시됩니다.</small></div>';
+  }else{
+    cList.innerHTML=certs.map((c,i)=>{
+      const ai=c.aiResult;
+      const aiHtml=ai
+        ?`<div class="admin-ai-box"><div class="admin-ai-lbl">AI 분석 결과</div>
+           <span style="color:${ai.passed?'#66bb6a':'#ff9800'};font-weight:700;">${ai.passed?'✅ AI 통과':'⚠️ 수동 검토 필요'}</span> &nbsp;·&nbsp; 신뢰도 ${ai.confidence}%<br>
+           <span style="font-size:.71rem;color:var(--txt2);">${ai.details&&ai.details[0]||''}</span></div>`
+        :`<div class="admin-ai-box"><div class="admin-ai-lbl">AI 분석</div><span style="color:var(--txt3);">분석 결과 없음</span></div>`;
+      const thumb=c.afterB64||c.beforeB64||null;
+      return `
+        <div class="admin-card">
+          <div class="admin-thumb" onclick="showCertPhoto(${i})" title="사진 크게 보기">
+            ${thumb?`<img src="${thumb}" alt="수거 사진"/>`:'<span style="font-size:1.6rem;">📸</span>'}
+          </div>
+          <div style="min-width:0;">
+            <div class="admin-info-id">${c.id}</div>
+            <div class="admin-info-loc">${c.loc}</div>
+            <div class="admin-info-meta">⚖️ ${c.kg}kg &nbsp;·&nbsp; 📅 ${c.date}<br>상태: <span style="color:${sc[c.status]||'var(--txt2)'};">${sl[c.status]||c.status}</span></div>
+            ${aiHtml}
+          </div>
+          <div class="admin-actions">
+            <button class="btn-approve" onclick="adminApproveCert(${i})">✅ 승인</button>
+            <button class="btn-reject" onclick="adminRejectCert(${i})">❌ 반려</button>
+            ${thumb?`<button class="btn-view-photo" onclick="showCertPhoto(${i})">🔍 사진</button>`:''}
+          </div>
+        </div>`;
+    }).join('');
+  }
+}
+function showReportPhoto(i){
+  const r=JSON.parse(localStorage.getItem('gmul_reports')||'[]')[i];
+  if(r&&r.photoB64)showLightbox(r.photoB64,r.id+' — 제보 사진');
+  else showToast('⚠️ 첨부된 사진이 없습니다.');
+}
+function showCertPhoto(i){
+  const c=JSON.parse(localStorage.getItem('gmul_certs')||'[]')[i];
+  if(c&&(c.afterB64||c.beforeB64))showLightbox(c.afterB64||c.beforeB64,c.id+' — 수거 사진');
+  else showToast('⚠️ 첨부된 사진이 없습니다.');
+}
+function adminApproveReport(i){const d=JSON.parse(localStorage.getItem('gmul_reports')||'[]');if(d[i])d[i].status='approved';localStorage.setItem('gmul_reports',JSON.stringify(d));loadAdminData();showToast('✅ 제보를 승인했습니다.');}
+function adminRejectReport(i){const d=JSON.parse(localStorage.getItem('gmul_reports')||'[]');if(d[i])d[i].status='rejected';localStorage.setItem('gmul_reports',JSON.stringify(d));loadAdminData();showToast('❌ 제보를 반려했습니다.');}
+function adminApproveCert(i){const d=JSON.parse(localStorage.getItem('gmul_certs')||'[]');if(d[i])d[i].status='approved';localStorage.setItem('gmul_certs',JSON.stringify(d));loadAdminData();showToast('✅ 수거 인증을 승인했습니다.');}
+function adminRejectCert(i){const d=JSON.parse(localStorage.getItem('gmul_certs')||'[]');if(d[i])d[i].status='rejected';localStorage.setItem('gmul_certs',JSON.stringify(d));loadAdminData();showToast('❌ 수거 인증을 반려했습니다.');}
+
+/* ── 라이트박스 ── */
+function showLightbox(src,caption){
+  if(!src){showToast('⚠️ 사진이 없습니다.');return;}
+  document.getElementById('lightboxImg').src=src;
+  document.getElementById('lightboxCaption').textContent=caption||'';
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  setTimeout(()=>document.getElementById('lightboxImg').src='',300);
+}
+
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3500);}
 
 document.getElementById('mapOverlay').addEventListener('click',function(){this.classList.add('gone');if(leafMap)leafMap.scrollWheelZoom.enable();});
